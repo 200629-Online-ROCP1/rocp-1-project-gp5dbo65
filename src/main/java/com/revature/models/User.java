@@ -11,7 +11,10 @@ public class User {
 	private String email;		//not null
 	private Role role;
 	private List<Account> acctList; //List of Account objects
-	
+
+	/***********************
+	 * Getters and Setters *
+	 ***********************/
 	public int getUserId() {
 		return userId;
 	}
@@ -76,13 +79,24 @@ public class User {
 		this.acctList = acctList;
 	}
 
+	/**********************
+	 *  User Constructors *
+	 **********************/
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	} //end no-arg User Constructor
+		
+	public User(String username, String password, String firstName, String lastName, String email, Role role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.role = role;
+		this.acctList.clear();
+	} //end 6-arg User Constructor : No userId & acctList provided 
 	
-	
-
 	public User(int userId, String username, String password, String firstName, String lastName, String email) {
 		super();
 		this.userId = userId;
@@ -94,6 +108,18 @@ public class User {
 		this.role = null;
 		this.acctList.clear();
 	} //end 6-arg User Constructor
+
+	public User(String username, String password, String firstName, String lastName, String email, Role role,
+			List<Account> acctList) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.role = role;
+		this.acctList = acctList;
+	} //end 7-arg User Constructor : No userId provided
 
 	public User(int userId, String username, String password, String firstName, String lastName, String email,
 			Role role, List<Account> acctList) {
@@ -124,9 +150,6 @@ public class User {
 			
 		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
 		+ firstName + ", lastName=" + lastName + ", email=" + email + ", role=" + role + acctString;
-		
 	} //end toString() method
-	
-		
 
 } //end User class

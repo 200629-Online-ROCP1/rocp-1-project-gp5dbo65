@@ -3,6 +3,10 @@
  */
 package com.revature;
 
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import com.revature.models.Account;
 import com.revature.models.AccountStatus;
 import com.revature.models.AccountType;
@@ -20,6 +24,13 @@ public class Driver {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
+		
+		
 		
 		// built Checking & Savings Type Objects
 		AccountType acct_Checking = buildAccountTypeObject(1);		
@@ -72,6 +83,18 @@ public class Driver {
 		
 
 	} //end main method
+	
+
+	public static Connection getConnection() throws SQLException {
+		String url = "jdbc:postgresql://localhost:5432/...";
+		String username = "postgres";
+		String password = "password";
+		
+		return DriverManager.getConnection(url, username, password);
+	} //end getConnection() method
+
+	
+	
 	
 	public static User buildUserObject() {
 		User userObj = new User();
