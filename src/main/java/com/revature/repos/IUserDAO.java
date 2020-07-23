@@ -11,8 +11,8 @@ public interface IUserDAO {
 	public List<User> findAll();
 	public User findById(int id);
 	public User findByUserName(String username);
-	public User findByLastName(String lastname);
-	public boolean register(User u);
+	//public User findByLastName(String lastname);
+	public boolean register(User user);
 	public boolean updateUser(User user);
 	public boolean validUserRole(User user);
 

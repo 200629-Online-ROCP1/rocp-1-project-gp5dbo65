@@ -11,6 +11,6 @@ public interface IRoleDAO {
 	public Role findById(int roleID);
 	public Role findByRole(String role);
 	List<Role> findAll();
-	public boolean insertRole(Role r);
+	//public boolean insertRole(Role r);
 	
 } //end IRoleDAO interface

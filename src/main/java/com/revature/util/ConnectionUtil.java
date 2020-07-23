@@ -19,7 +19,7 @@ public class ConnectionUtil {
 		
 		String url = "jdbc:postgresql://localhost:5432/ROCP1BankingAPI";
 		String username = "postgres";
-		String password = "xxxxxxxxxxx";
+		String password = "Bohica91765";
 		
 		return DriverManager.getConnection(url, username, password);
 	

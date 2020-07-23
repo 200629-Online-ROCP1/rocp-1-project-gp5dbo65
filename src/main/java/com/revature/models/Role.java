@@ -1,17 +1,11 @@
+/* Role.java */
+
 package com.revature.models;
 
 public class Role {
 	private int roleId;		//primary key
 	private String role;	//not null, unique
 	
-	/*
-	*enum role {
-	*	Admin,
-	*	Employee,
-	*	Standard,
-	*	Premium
-	*} //end role enumerations
-	*/
 	public int getRoleId() {
 		return roleId;
 	}
@@ -76,6 +70,4 @@ public class Role {
 	public String toString() {
 		return "Role [roleId=" + roleId + ", role=" + role + "]";
 	} //end toString() method
-	
-	
 } //end Role class

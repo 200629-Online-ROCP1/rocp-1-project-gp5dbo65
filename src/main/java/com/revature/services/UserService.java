@@ -13,10 +13,12 @@ public class UserService {
 	private final IUserDAO  dao = new UserDAO();
 	
 	public List<User> findAll() {
+		//System.out.println("UserService List findAll() method");
 		return dao.findAll();
 	} //end findAll() method
 
 	public User findById(int id) {
+		//System.out.println("UserService findById(" +id + ") method");
 		return dao.findById(id);
 	} //end findByUserId(id) method
 	

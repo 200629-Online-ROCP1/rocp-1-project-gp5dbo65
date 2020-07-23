@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.LoginDTO;
+//import com.revature.models.User;
 import com.revature.services.LoginService;
 
 public class LoginController {
@@ -21,7 +22,6 @@ public class LoginController {
 	public void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		if(req.getMethod().equals("POST")) {
-			System.out.println("in POST logic of LoginService");
 			BufferedReader reader = req.getReader();
 			StringBuilder sb = new StringBuilder();
 			String line = reader.readLine();
@@ -31,14 +31,8 @@ public class LoginController {
 				line = reader.readLine();
 			} //end while loop
 			
-			System.out.println("line = " + line);
 			String body = new String(sb);
-			System.out.println("body = " + body);
 			LoginDTO l = om.readValue(body, LoginDTO.class);
-			System.out.println("LoginDTO username = " + l.username);
-			System.out.println("LoginDTO password = " + l.password);
-			System.out.println("LoginDTO role = " + l.role);
-			
 			if(ls.login(l)) {
 				HttpSession ses = req.getSession();
 				ses.setAttribute("user", l);
@@ -53,8 +47,8 @@ public class LoginController {
 					ses.invalidate();
 				} //end if block
 				
-				resp.setStatus(401);
-				resp.getWriter().println("Login Failed");
+				resp.setStatus(400); //Client Error - BAD REQUEST
+				resp.getWriter().println("Invalid Credentials");
 			} //end else block
 		} //end if block
 		
@@ -64,7 +58,7 @@ public class LoginController {
 			LoginDTO l = new LoginDTO();
 			l.username = req.getParameter("username");
 			l.password = req.getParameter("password");
-			
+
 			if(ls.login(l)) {
 				HttpSession ses = req.getSession();
 				ses.setAttribute("user", l);
@@ -72,16 +66,17 @@ public class LoginController {
 				resp.setStatus(200);
 				resp.getWriter().println("Login Successful!");
 			} //end if block
+			
 			else {
 				HttpSession ses = req.getSession(false);
+				
 				if(ses != null) {
 					ses.invalidate();
 				} //end if block
-				resp.setStatus(401);
-				resp.getWriter().println("Login Failed");
+				resp.setStatus(400);
+				resp.getWriter().println("Invalid Credentials");
 			} //end else block
 		} //end else if block
-		
 	} //end login method
 	
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -91,12 +86,12 @@ public class LoginController {
 			LoginDTO l = (LoginDTO) ses.getAttribute("user");
 			ses.invalidate();
 			resp.setStatus(200);
-			resp.getWriter().println(l.username + " you are logged out.");			
+			resp.getWriter().println("You have successfully logged out " + l.username );			
 		} //end if block
+		
 		else {
-			resp.setStatus(400);
-			resp.getWriter().println("You must be logged in to log out.");
+			resp.setStatus(400);  //Client Error - BAD REQUEST
+			resp.getWriter().println("There was no user logged into the session.");
 		} //end else block
 	} //end logout method
-
 } //end LogingController class

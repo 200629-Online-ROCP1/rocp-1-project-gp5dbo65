@@ -3,7 +3,7 @@
 package com.revature.repos;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+//import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,7 +17,7 @@ public class RoleDAO implements IRoleDAO {
 
 	@Override
 	public Role findById(int roleId) {
-		System.out.println("in the findById method of RoleDAO class");
+		//System.out.println("in the findById method of RoleDAO class");
 		try(Connection conn = ConnectionUtil.getConnection()) {
 			String sql = "SELECT * FROM roles WHERE roleid = '" + roleId + "';";
 			Statement statement = conn.createStatement();
@@ -29,7 +29,6 @@ public class RoleDAO implements IRoleDAO {
 				r.setRole(result.getString("role"));
 				return r;
 			} //end if block
-			
 		} //end try block
 		
 		catch (SQLException e) {
@@ -52,7 +51,6 @@ public class RoleDAO implements IRoleDAO {
 				r.setRole(result.getString("role"));
 				return r;
 			} //end if block
-			
 		} //end try block
 		
 		catch (SQLException e) {
@@ -77,7 +75,7 @@ public class RoleDAO implements IRoleDAO {
 				list.add(r);
 			} //end while loop
 			
-			System.out.println("role array loaded " + list.size() + " entries");
+			//System.out.println("role array loaded " + list.size() + " entries");
 			return list;			
 		} //end try block
 		
@@ -87,7 +85,7 @@ public class RoleDAO implements IRoleDAO {
 		
 		return null;
 	} //end findAll() method
-
+/*
 	@Override
 	public boolean insertRole(Role r) {
 		try(Connection conn = ConnectionUtil.getConnection()) {
@@ -105,5 +103,5 @@ public class RoleDAO implements IRoleDAO {
 		
 		return false;
 	} //end insertRole(r) method
-
+*/
 } //end RoldDAO class
