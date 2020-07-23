@@ -4,13 +4,14 @@ public class Role {
 	private int roleId;		//primary key
 	private String role;	//not null, unique
 	
-	enum role {
-		Admin,
-		Employee,
-		Standard,
-		Premium
-	} //end role enumerations
-	
+	/*
+	*enum role {
+	*	Admin,
+	*	Employee,
+	*	Standard,
+	*	Premium
+	*} //end role enumerations
+	*/
 	public int getRoleId() {
 		return roleId;
 	}
@@ -29,7 +30,6 @@ public class Role {
 	
 	public Role() {
 		super();
-		// TODO Auto-generated constructor stub
 	} //end no-arg Role Constructor
 	
 	public Role(int roleId) {

@@ -1,3 +1,5 @@
+/* User.java */
+
 package com.revature.models;
 
 import java.util.List;

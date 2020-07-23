@@ -1,3 +1,5 @@
+/* LoginController.java */
+
 package com.revature.controllers;
 
 import java.io.BufferedReader;
@@ -19,17 +21,23 @@ public class LoginController {
 	public void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		
 		if(req.getMethod().equals("POST")) {
+			System.out.println("in POST logic of LoginService");
 			BufferedReader reader = req.getReader();
 			StringBuilder sb = new StringBuilder();
 			String line = reader.readLine();
-			
+		
 			while(line != null) {
 				sb.append(line);
 				line = reader.readLine();
 			} //end while loop
 			
+			System.out.println("line = " + line);
 			String body = new String(sb);
+			System.out.println("body = " + body);
 			LoginDTO l = om.readValue(body, LoginDTO.class);
+			System.out.println("LoginDTO username = " + l.username);
+			System.out.println("LoginDTO password = " + l.password);
+			System.out.println("LoginDTO role = " + l.role);
 			
 			if(ls.login(l)) {
 				HttpSession ses = req.getSession();
@@ -38,15 +46,18 @@ public class LoginController {
 				resp.setStatus(200);
 				resp.getWriter().println("Login Successful!");
 			} //end if block
+			
 			else {
 				HttpSession ses = req.getSession(false);
 				if(ses != null) {
 					ses.invalidate();
 				} //end if block
+				
 				resp.setStatus(401);
 				resp.getWriter().println("Login Failed");
 			} //end else block
 		} //end if block
+		
 		else if(req.getMethod().equals("GET")
 					&& (req.getParameterMap().containsKey("username")
 							&& (req.getParameterMap().containsKey("password")))) {

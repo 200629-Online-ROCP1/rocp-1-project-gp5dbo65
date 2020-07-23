@@ -10,4 +10,4 @@ public class LoginDTO {
 	public String password;
 	public String role;
 
-} //end LoginDTO class
+	} //end LoginDTO class
